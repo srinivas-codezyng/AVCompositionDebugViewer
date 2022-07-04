@@ -210,7 +210,7 @@ enum { kBannerHeight = 20, kIdealRowHeight = 40, kGapAfterRows = 4 };
 //                if ([layerNames count] > 1) {
 //                    stage->opacityRamps = rampsDictionary;
 //                }
-                stage->layerNames = [@"Instruction"];
+                stage->layerNames = @[@"Instruction"];
                 
 //            }
 
@@ -685,7 +685,7 @@ enum { kBannerHeight = 20, kIdealRowHeight = 36, kGapAfterRows = 4 };
 //                    stage->opacityRamps = rampsDictionary;
 //                }
                 
-                stage->layerNames = [@"instruction"];
+                stage->layerNames = @[@"instruction"];
           [stages addObject:stage];
         }
         videoCompositionStages = stages;
