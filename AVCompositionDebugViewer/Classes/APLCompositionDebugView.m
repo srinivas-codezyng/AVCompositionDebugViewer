@@ -212,8 +212,8 @@ enum { kBannerHeight = 20, kIdealRowHeight = 40, kGapAfterRows = 4 };
                 }
                 stage->layerNames = layerNames;
                 
-                [stages addObject:stage];
             }
+          [stages addObject:stage];
         }
         videoCompositionStages = stages;
     }
@@ -685,8 +685,8 @@ enum { kBannerHeight = 20, kIdealRowHeight = 36, kGapAfterRows = 4 };
                 }
                 
                 stage->layerNames = layerNames;
-                [stages addObject:stage];
             }
+          [stages addObject:stage];
         }
         videoCompositionStages = stages;
     }
