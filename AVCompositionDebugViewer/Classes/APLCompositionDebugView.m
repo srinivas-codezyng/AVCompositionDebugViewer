@@ -187,32 +187,33 @@ enum { kBannerHeight = 20, kIdealRowHeight = 40, kGapAfterRows = 4 };
             stage->timeRange = instruction.timeRange;
             NSMutableDictionary *rampsDictionary = [[NSMutableDictionary alloc] init];
             
-            if ([instruction isKindOfClass:[AVVideoCompositionInstruction class]]) {
-                NSMutableArray *layerNames = [[NSMutableArray alloc] init];
-                for (AVVideoCompositionLayerInstruction *layerInstruction in instruction.layerInstructions) {
-                    NSMutableArray *ramp = [[NSMutableArray alloc] init];
-                    CMTime startTime = kCMTimeZero;
-                    float startOpacity, endOpacity = 1.0;
-                    CMTimeRange timeRange;
-                    while ([layerInstruction getOpacityRampForTime:startTime startOpacity:&startOpacity endOpacity:&endOpacity timeRange:&timeRange]) {
-                        if (CMTIME_COMPARE_INLINE(startTime, ==, kCMTimeZero) && CMTIME_COMPARE_INLINE(timeRange.start, >, kCMTimeZero)) {
-                            [ramp addObject:[NSValue valueWithPoint:NSMakePoint(CMTimeGetSeconds(timeRange.start), startOpacity)]];
-                        }
-                        [ramp addObject:[NSValue valueWithPoint:NSMakePoint(CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange)), endOpacity)]];
-                        startTime = CMTimeRangeGetEnd(timeRange);
-                    }
-                    
-                    NSString *name = [NSString stringWithFormat:@"%d", layerInstruction.trackID];
-                    [layerNames addObject:name];
-                    [rampsDictionary setObject:ramp forKey:name];
-                }
+//            if ([instruction isKindOfClass:[AVVideoCompositionInstruction class]]) {
+//                NSMutableArray *layerNames = [[NSMutableArray alloc] init];
+//                for (AVVideoCompositionLayerInstruction *layerInstruction in instruction.layerInstructions) {
+//                    NSMutableArray *ramp = [[NSMutableArray alloc] init];
+//                    CMTime startTime = kCMTimeZero;
+//                    float startOpacity, endOpacity = 1.0;
+//                    CMTimeRange timeRange;
+//                    while ([layerInstruction getOpacityRampForTime:startTime startOpacity:&startOpacity endOpacity:&endOpacity timeRange:&timeRange]) {
+//                        if (CMTIME_COMPARE_INLINE(startTime, ==, kCMTimeZero) && CMTIME_COMPARE_INLINE(timeRange.start, >, kCMTimeZero)) {
+//                            [ramp addObject:[NSValue valueWithPoint:NSMakePoint(CMTimeGetSeconds(timeRange.start), startOpacity)]];
+//                        }
+//                        [ramp addObject:[NSValue valueWithPoint:NSMakePoint(CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange)), endOpacity)]];
+//                        startTime = CMTimeRangeGetEnd(timeRange);
+//                    }
+//
+//                    NSString *name = [NSString stringWithFormat:@"%d", layerInstruction.trackID];
+//                    [layerNames addObject:name];
+//                    [rampsDictionary setObject:ramp forKey:name];
+//                }
                 
-                if ([layerNames count] > 1) {
-                    stage->opacityRamps = rampsDictionary;
-                }
-                stage->layerNames = layerNames;
+//                if ([layerNames count] > 1) {
+//                    stage->opacityRamps = rampsDictionary;
+//                }
+                stage->layerNames = [@"Instruction"];
                 
-            }
+//            }
+
           [stages addObject:stage];
         }
         videoCompositionStages = stages;
@@ -660,32 +661,31 @@ enum { kBannerHeight = 20, kIdealRowHeight = 36, kGapAfterRows = 4 };
             stage->timeRange = instruction.timeRange;
             NSMutableDictionary *rampsDictionary = [[NSMutableDictionary alloc] init];
             
-            if ([instruction isKindOfClass:[AVVideoCompositionInstruction class]]) {
-                NSMutableArray *layerNames = [[NSMutableArray alloc] init];
-                for (AVVideoCompositionLayerInstruction *layerInstruction in instruction.layerInstructions) {
-                    NSMutableArray *ramp = [[NSMutableArray alloc] init];
-                    CMTime startTime = kCMTimeZero;
-                    float startOpacity, endOpacity = 1.0;
-                    CMTimeRange timeRange;
-                    while ([layerInstruction getOpacityRampForTime:startTime startOpacity:&startOpacity endOpacity:&endOpacity timeRange:&timeRange]) {
-                        if (CMTIME_COMPARE_INLINE(startTime, ==, kCMTimeZero) && CMTIME_COMPARE_INLINE(timeRange.start, >, kCMTimeZero)) {
-                            [ramp addObject:[NSValue valueWithCGPoint:CGPointMake(CMTimeGetSeconds(timeRange.start), startOpacity)]];
-                        }
-                        [ramp addObject:[NSValue valueWithCGPoint:CGPointMake(CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange)), endOpacity)]];
-                        startTime = CMTimeRangeGetEnd(timeRange);
-                    }
-                    
-                    NSString *name = [NSString stringWithFormat:@"%d", layerInstruction.trackID];
-                    [layerNames addObject:name];
-                    [rampsDictionary setObject:ramp forKey:name];
-                }
+//            if ([instruction isKindOfClass:[AVVideoCompositionInstruction class]]) {
+//                NSMutableArray *layerNames = [[NSMutableArray alloc] init];
+//                for (AVVideoCompositionLayerInstruction *layerInstruction in instruction.layerInstructions) {
+//                    NSMutableArray *ramp = [[NSMutableArray alloc] init];
+//                    CMTime startTime = kCMTimeZero;
+//                    float startOpacity, endOpacity = 1.0;
+//                    CMTimeRange timeRange;
+//                    while ([layerInstruction getOpacityRampForTime:startTime startOpacity:&startOpacity endOpacity:&endOpacity timeRange:&timeRange]) {
+//                        if (CMTIME_COMPARE_INLINE(startTime, ==, kCMTimeZero) && CMTIME_COMPARE_INLINE(timeRange.start, >, kCMTimeZero)) {
+//                            [ramp addObject:[NSValue valueWithCGPoint:CGPointMake(CMTimeGetSeconds(timeRange.start), startOpacity)]];
+//                        }
+//                        [ramp addObject:[NSValue valueWithCGPoint:CGPointMake(CMTimeGetSeconds(CMTimeRangeGetEnd(timeRange)), endOpacity)]];
+//                        startTime = CMTimeRangeGetEnd(timeRange);
+//                    }
+//
+//                    NSString *name = [NSString stringWithFormat:@"%d", layerInstruction.trackID];
+//                    [layerNames addObject:name];
+//                    [rampsDictionary setObject:ramp forKey:name];
+//                }
+//
+//                if ([layerNames count] > 1) {
+//                    stage->opacityRamps = rampsDictionary;
+//                }
                 
-                if ([layerNames count] > 1) {
-                    stage->opacityRamps = rampsDictionary;
-                }
-                
-                stage->layerNames = layerNames;
-            }
+                stage->layerNames = [@"instruction"];
           [stages addObject:stage];
         }
         videoCompositionStages = stages;
